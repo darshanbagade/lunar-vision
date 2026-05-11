@@ -34,11 +34,12 @@ function StarField() {
           }}
           animate={{
             opacity: [0.45, 1, 0.55],
-            x: [0, 18, -10, 0],
-            y: [0, -10, 8, 0],
+            scale: [0.8, 1.55, 0.85],
+            x: [0, 18, -10,-5,18, 0],
+            y: [0, -10, 8, 20,,-10, 0],
           }}
           transition={{
-            duration: 5 + index * 0.18,
+            duration: 5+ index * 0.18,
             repeat: Infinity,
             delay: star.delay,
             ease: "easeInOut",
@@ -55,7 +56,7 @@ function Moon() {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className="absolute right-[-220px] top-1/2 h-[680px] w-[680px] -translate-y-1/2 rounded-full"
+      className="absolute right-[-50px] top-100 h-[680px] w-[680px] -translate-y-1/2 rounded-full"
     >
       <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_32%_36%,#ffffff_0%,#f8fafc_24%,#e5e7eb_48%,#cbd5e1_72%,#94a3b8_100%)] shadow-[0_0_140px_rgba(255,255,255,0.34)]" />
 
@@ -76,7 +77,7 @@ function MoonLightRays() {
     <>
       <motion.div
         animate={{
-          opacity: [0.1, 0.4, 0.82, 0.6, 0.4, 0.1],
+          opacity: [0.1, 0.4, 1, 0.6, 0.4, 0.1],
           x: [10, -30, 0],
         }}
         transition={{
@@ -90,14 +91,14 @@ function MoonLightRays() {
       <motion.div
         animate={{
           opacity: [0.14, 0.26, 0.18],
-          x: [10, -22, 10],
+          x: [10, 22, 10],
         }}
         transition={{
           duration: 13,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-[-100px] top-0 h-full w-[62vw] bg-[radial-gradient(circle_at_100%_50%,rgba(255,255,255,0.62),rgba(255,255,255,0.24)_20%,rgba(255,255,255,0.08)_42%,transparent_74%)]"
+        className="absolute right-[-40px] top-20 h-full w-[62vw] bg-[radial-gradient(circle_at_100%_50%,rgba(255,255,255,0.62),rgba(255,255,255,0.24)_20%,rgba(255,255,255,0.08)_42%,transparent_74%)]"
       />
 
       <motion.div
@@ -110,37 +111,38 @@ function MoonLightRays() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute right-0 top-[10%] h-[80%] w-[85vw] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.01)_18%,rgba(255,255,255,0.03)_34%,rgba(255,255,255,0.07)_52%,rgba(255,255,255,0.13)_70%,rgba(255,255,255,0.22)_86%,rgba(255,255,255,0.34)_100%)] blur-3xl"
+        className="absolute right-100 top-[50%] h-[80%] w-[85vw] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.01)_18%,rgba(255,255,255,0.03)_34%,rgba(255,255,255,0.07)_52%,rgba(255,255,255,0.13)_70%,rgba(255,255,255,0.22)_86%,rgba(255,255,255,0.34)_100%)] blur-3xl"
       />
     </>
   );
 }
 
+
 function MiniRover() {
   return (
     <motion.div
       initial={{
-        x: "-12vw",
-        y: "10vh",
-        opacity: 0,
-        scale: 0.72,
-        rotate: -8,
+        x: "-92vw",
+        y: "60vh",
+        opacity: 1,
+        scale: 2.4,
+        rotate: 0,
       }}
       animate={{
-        x: ["-10vw", "69vw"],
-        y: ["-10vh", "-61vh"],
-        opacity: [1, 1, 1, 1],
-        scale: [2, 2.2, 2.5, 2.8],
-        rotate: [0, -10, -30, -50],
+        x: 0,
+        y: 0,
+        opacity: [1],
+        scale: [2.4, 2.85],
+        rotate: [0, -47.5],
       }}
       transition={{
-        duration: 7,
-        delay: 0.6,
+        duration: 5,
+        delay: 0.3,
         ease: "easeInOut",
       }}
-      className="absolute bottom-14 left-8 z-10"
+      className="absolute left-[71px] top-[120px] z-20"
     >
-      <div className="relative h-8 w-14 rounded-xl border border-white/35 bg-white/[0.08] shadow-[0_0_16px_rgba(255,255,255,0.18)]">
+      <div className="relative h-8 w-14 rounded-xl border border-white bg-white/[0.08] shadow-[0_0_16px_rgba(255,255,255,0.18)]">
         <div className="absolute left-3 top-3 h-1.5 w-8 rounded-full bg-white/75" />
         <div className="absolute left-8 -top-3 h-4 w-px bg-white/60" />
         <div className="absolute left-[29px] -top-4 h-2 w-2 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.75)]" />
@@ -148,6 +150,16 @@ function MiniRover() {
         <div className="absolute -bottom-1 right-2 h-2.5 w-2.5 rounded-full bg-black ring-2 ring-white/70" />
       </div>
     </motion.div>
+  );
+}
+
+
+function MoonScene() {
+  return (
+    <div className="absolute right-[-220px] top-1/2 h-[680px] w-[680px] -translate-y-1/2 rounded-full">
+      <Moon />
+      <MiniRover />
+    </div>
   );
 }
 
@@ -162,8 +174,7 @@ function SpaceBackground() {
 
       <div className="hidden md:block">
         <MoonLightRays />
-        <Moon />
-        <MiniRover />
+        <MoonScene />
       </div>
 
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.10)_52%,rgba(0,0,0,0.72)_100%)]" />
