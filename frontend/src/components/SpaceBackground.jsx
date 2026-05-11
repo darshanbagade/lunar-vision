@@ -55,7 +55,7 @@ function Moon() {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      className="absolute right-[-220px] top-120 h-[680px] w-[680px] -translate-y-1/2 rounded-full"
+      className="absolute right-[-220px] top-1/2 h-[680px] w-[680px] -translate-y-1/2 rounded-full"
     >
       <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_32%_36%,#ffffff_0%,#f8fafc_24%,#e5e7eb_48%,#cbd5e1_72%,#94a3b8_100%)] shadow-[0_0_140px_rgba(255,255,255,0.34)]" />
 
@@ -74,10 +74,9 @@ function Moon() {
 function MoonLightRays() {
   return (
     <>
-      {/* Main broad reflection */}
       <motion.div
         animate={{
-          opacity: [0.10, 0.40, 0.82,0.60, 0.40, 0.1],
+          opacity: [0.1, 0.4, 0.82, 0.6, 0.4, 0.1],
           x: [10, -30, 0],
         }}
         transition={{
@@ -88,7 +87,6 @@ function MoonLightRays() {
         className="absolute right-0 top-0 h-full w-[78vw] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.015)_20%,rgba(255,255,255,0.05)_38%,rgba(255,255,255,0.10)_55%,rgba(255,255,255,0.18)_72%,rgba(255,255,255,0.30)_88%,rgba(255,255,255,0.42)_100%)] blur-2xl"
       />
 
-      {/* Soft radial moon glow */}
       <motion.div
         animate={{
           opacity: [0.14, 0.26, 0.18],
@@ -102,10 +100,9 @@ function MoonLightRays() {
         className="absolute right-[-100px] top-0 h-full w-[62vw] bg-[radial-gradient(circle_at_100%_50%,rgba(255,255,255,0.62),rgba(255,255,255,0.24)_20%,rgba(255,255,255,0.08)_42%,transparent_74%)]"
       />
 
-      {/* Long cinematic left-cast beam */}
       <motion.div
         animate={{
-          opacity: [0.10, 0.20, 0.12],
+          opacity: [0.1, 0.2, 0.12],
           x: [0, -40, 0],
         }}
         transition={{
@@ -131,10 +128,10 @@ function MiniRover() {
       }}
       animate={{
         x: ["-10vw", "69vw"],
-        y: ["-10vh","-61vh"],
+        y: ["-10vh", "-61vh"],
         opacity: [1, 1, 1, 1],
         scale: [2, 2.2, 2.5, 2.8],
-        rotate: [0,-10, -30, -50],
+        rotate: [0, -10, -30, -50],
       }}
       transition={{
         duration: 7,
@@ -162,9 +159,12 @@ function SpaceBackground() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.04),transparent_28%),radial-gradient(circle_at_52%_84%,rgba(255,255,255,0.03),transparent_34%)]" />
 
       <StarField />
-      <MoonLightRays />
-      <Moon />
-      <MiniRover />
+
+      <div className="hidden md:block">
+        <MoonLightRays />
+        <Moon />
+        <MiniRover />
+      </div>
 
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.10)_52%,rgba(0,0,0,0.72)_100%)]" />
     </div>
