@@ -13,7 +13,7 @@ function App() {
       <SpaceBackground />
       <Navbar />
 
-      <main>
+      <main className="pt-[76px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/demo" element={<Demo />} />
@@ -22,7 +22,7 @@ function App() {
         </Routes>
       </main>
 
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 }

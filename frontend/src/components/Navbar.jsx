@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Satellite } from "lucide-react";
+import { Menu, X, Satellite } from "lucide-react";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -9,15 +10,22 @@ const navItems = [
 ];
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/30 bg-black/40 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <NavLink to="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/30 bg-white/5">
-            <Satellite className="h-5 w-5 text-slate-200" />
+    <header className="fixed left-0 top-0 z-[999] w-full border-b border-white/10 bg-black/80 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-[1450px] items-center justify-between px-4 py-3 lg:px-8">
+        <NavLink to="/" onClick={closeMenu} className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.04]">
+            <Satellite className="h-5 w-5 text-white/85" />
           </div>
+
           <div>
-            <h1 className="text-lg font-semibold tracking-wide text-white">
+            <h1 className="text-base font-semibold tracking-wide text-white md:text-lg">
               Lunar Vision
             </h1>
             <p className="text-xs text-slate-400">
@@ -43,7 +51,38 @@ function Navbar() {
             </NavLink>
           ))}
         </div>
+
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/15 bg-white/[0.06] text-white md:hidden"
+          aria-label="Toggle navigation menu"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
+
+      {isOpen && (
+        <div className="border-t border-white/10 bg-black/95 px-4 py-4 backdrop-blur-xl md:hidden">
+          <div className="mx-auto grid max-w-[1450px] gap-2">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `rounded-2xl px-4 py-3 text-sm transition ${
+                    isActive
+                      ? "bg-white/10 text-white"
+                      : "text-slate-300 hover:bg-white/5 hover:text-white"
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
