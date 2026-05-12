@@ -555,9 +555,11 @@ function Demo() {
               setPanX(0);
               setPanY(0);
             }}
-            className="absolute right-6 top-6 rounded-full border border-white/30 bg-white/10 p-3 text-white transition hover:bg-white/30 z-10"
+            aria-label="Exit fullscreen"
+            title="Exit fullscreen"
+            className="fixed right-6 top-26 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white shadow-lg transition hover:bg-white/20 hover:border-white/50"
           >
-            <X className="h-5 w-5" />
+            <X className="h-6 w-6" />
           </button>
 
           <img
